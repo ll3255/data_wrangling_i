@@ -23,8 +23,52 @@ litters_data = janitor::clean_names(litters_data)
 ### print dataset (next time, just run in the console and not up here); good first QA check
 litters_data
 ```
-* command view(litters_data) to see dataset
+
+* command view(litters_data) to see dataset; ONLY in the CONSOLE
 
 # Take 2 at loading a dataset:
 ```{r}
+## realtive path
+pups_data = read_csv(file = "./data/FAS_pups.csv")
+
+## absolute path (how do I do this?)
+
+## skim functin for variable overview
+skimr::skim(pups_data)
 ```
+
+# Other argument to read in data
+* col_names
+* na
+* skip ex code:
+  litters_data = read_csv(file = "./data/FAS_litters.csv",
+    skip = 10, col_names = FALSE)
+    
+```{r}
+# play with column parsing (specify variable types yourself)
+litters_data = read_csv(file = "./data/FAS_litters.csv",
+  col_types = cols(
+    Group = col_character(),
+    `Litter Number` = col_character(),
+    `GD0 weight` = col_double(),
+    `GD18 weight` = col_double(),
+    `GD of Birth` = col_integer(),
+    `Pups born alive` = col_integer(),
+    `Pups dead @ birth` = col_integer(),
+    `Pups survive` = col_integer()
+  ))
+### Group name doesn't have backticks bc it's a standard name; all the others have non-standard format and need ``
+```
+
+## Read in excel file:
+```{r}
+library(readxl)
+mlb11_data = 
+  read_excel("data/mlb11.xlsx")
+```
+
+## Read in SAS:
+```{r}
+pulse_data = haven::read_sas("./data/public_pulse_data.sas7bdat")
+```
+
