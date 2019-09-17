@@ -1,0 +1,30 @@
+---
+title: "Data Import"
+author: "LML"
+date: "9/17/2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+#Load a dataset:
+
+```{r}
+## read in a dataset
+### NEVER use an absolute path, ALWAYS use a relative path like so:
+litters_data = read_csv(file = "./data/FAS_litters.csv")
+### clean up data names withthe janitor function
+litters_data = janitor::clean_names(litters_data)
+
+### print dataset (next time, just run in the console and not up here); good first QA check
+litters_data
+```
+* command view(litters_data) to see dataset
+
+# Take 2 at loading a dataset:
+```{r}
+```
